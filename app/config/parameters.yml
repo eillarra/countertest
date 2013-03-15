@@ -1,0 +1,20 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     countertest_dev
+    database_user:     root
+    database_password: ~
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+    
+    secret:            ThisTokenIsNotSoSecretChangeIt
+    
+    locale:            en
+    available_locales: [en] # all locales, active + inactive (for admin)
+    active_locales:    [en] # visible on webpage
+    locales:
+        en: English
