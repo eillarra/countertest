@@ -1,0 +1,57 @@
+{% extends "AppCoreBundle::layout.html.twig" %}
+
+{% block title "Blog" %}
+
+{% block content %}
+    <div class="post">
+        {#
+        <p>Pages: {{ pages }} | Page: {{ page }}</p>
+        <p>Posts per page: {{ postsPerPage }}</p>
+        <code>
+            <ul>
+            {% for post in posts %}
+                <li><a href="{{ path(post.urlRoute, post.urlParams) }}">[{{ post.publishedAt|date('Y-m-d') }}] {{ post.title }} [{{ post.id }}]</a></li>
+            {% endfor %}
+            </ul>
+        </code>
+        <hr />
+        <p><a href="{{ url('rss_feed') }}">RSS Feed</a></p>
+        #}
+        <div class="row">
+            <div class="three columns push-nine">
+                <p>Este es el blog de Didongo Club, es un espacio para mí y un espacio para ti, es un espacio para compartir, porque Didongo se basa en esta filosofía, compartir ideas, tiempos, creatividad, pensamientos, y este es un lugar más donde queremos ofrecerte y, al mismo tiempo, recibir sugerencias, propuestas de actividades, juegos, y todo lo demás relacionado que se pueda realizar con los peques de casa.</p>
+                <p>¡Bienvenidos/as!</p>
+            </div>
+            <div class="eight columns pull-three offset-by-one boxes">
+                <div class="row mini-margin">
+                    <div class="twelve columns">
+                        <div class="box bg-cyan">
+                            <div style="display:block;width:635px;height:170px;"></div>
+                            <h1><a href="{{ path('post_view', {'id': posts[0].id, 'slug': posts[0].slug}) }}">{{ posts[0].title }}</a></h1>
+                        </div>
+                    </div>
+                </div>
+                {% for category in categories %}
+                    {% if loop.first %}
+                        <div class="row mini-margin">
+                    {% endif %}
+                            <div class="four columns end">
+                                <div class="box bg-cyan category">
+                                    <div class="table">
+                                        <div class="cell">
+                                            <h3 color="white"><a href="{{ path('post_index') }}">{{ category.name }}</a></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    {% if loop.index is divisibleby(3) or loop.last and not loop.first %}
+                        </div>
+                    {% endif %}
+                    {% if loop.index is divisibleby(3) and not loop.last %}
+                        <div class="row mini-margin">
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

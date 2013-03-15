@@ -1,0 +1,18 @@
+menu:
+    blog:
+        categories:  Categories
+
+post:
+    label:
+        category:    Category
+
+category:
+    label:
+        name:        Name
+    title:
+        edit:        Edit category
+        index:       Blog categories
+        new:         Create a new category
+        show:        Blog category
+    counter:
+        posts:       '{0} No posts |{1} One post |]1,Inf] %count% posts'

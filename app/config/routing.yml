@@ -1,0 +1,8 @@
+illarra_core:
+    resource: "@IllarraCoreBundle/Resources/config/routing.yml"
+
+illarra_blog:
+    resource: "../../src/Illarra/BlogBundle/Resources/config/routing.yml"
+
+app_blog:
+    resource: "../../src/App/BlogBundle/Resources/config/routing.yml"

@@ -1,0 +1,14 @@
+{% extends "AppCoreBundle::layout.html.twig" %}
+
+{% block title post.title %}
+{% block description post.excerpt %}
+
+{% block content %}
+    <div class="row">
+        <div class="twelve columns">
+            <h1>{{ post.title }}</h1>
+            <p>{{ post.excerpt }}</p>
+            <p>{{ post.text }}</p>
+        </div>
+    </div>
+{% endblock %}

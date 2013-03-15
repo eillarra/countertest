@@ -1,0 +1,9 @@
+illarra_seo:
+    resource: "@IllarraCoreBundle/Controller/SeoController.php"
+    type:     annotation
+    prefix:   /
+
+illarra_admin:
+    resource: "@IllarraCoreBundle/Controller/AdminController.php"
+    type:     annotation
+    prefix:   /

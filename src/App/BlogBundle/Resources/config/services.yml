@@ -1,0 +1,10 @@
+services:
+    app_blog.doctrine.post_listener:
+        class: App\BlogBundle\EventListener\OnFlushPostCounterListener
+        tags:
+            - { name: doctrine.event_listener, event: onFlush }
+    app_blog.configure_admin_menu_listener:
+        class: App\BlogBundle\EventListener\ConfigureAdminMenuListener
+        arguments: ["@security.context"]
+        tags:
+            - { name: kernel.event_listener, event: illarra_core.configure_admin_menu, method: onMenuConfigure }

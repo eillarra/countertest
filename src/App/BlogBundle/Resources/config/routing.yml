@@ -1,0 +1,12 @@
+admin_app_blog_category:
+    resource: "../../Controller/Admin/CategoryController.php"
+    type:     annotation
+    prefix:   "/admin/blog"
+    options:
+        i18n: false
+
+app_blog:
+    resource: "../../Controller/BlogController.php"
+    type:     annotation
+    prefix:   "/blog"
+

@@ -1,0 +1,101 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block form_label %}
+{% spaceless %}
+    {% set translation_domain = 'illarra_admin' %}
+    {% if label is not sameas(false) %}
+        {% if not compound %}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {% endif %}
+        {% if required %}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {% endif %}
+        {% if label is empty %}
+            {% set label = 'label.'~ name %}
+        {% endif %}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}
+            {%- if required %} <b class="color-alert">*</b>{%- endif -%}
+        </label>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_label %}
+
+{% block choice_widget %}
+{% spaceless %}
+    {% set placeholder = 'placeholder.chosen.one'|trans({}, 'illarra_admin') %}
+    {% if multiple %}
+        {% set placeholder = 'placeholder.chosen.multiple'|trans({}, 'illarra_admin') %}
+    {% endif %}
+    {% set attr = attr|merge({
+        'class': (attr.class|default('') ~ ' js-chosen')|trim,
+        'data-placeholder': placeholder,
+        'data-no_results_text': 'placeholder.chosen.no_results'|trans({}, 'illarra_admin')
+    }) %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock choice_widget %}
+
+{% block datetime_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('form_widget_simple') }}
+    {% else %}
+        <div {{ block('widget_container_attributes') }}>
+            <div class="row">
+                <div class="large-6 columns">
+                    {{ form_widget(form.date) }}
+                </div>
+                <div class="large-6 columns">
+                    {{ form_widget(form.time) }}
+                </div>
+            </div>
+        </div>
+        <div class="large-12 columns">
+            {{ form_errors(form.date) }}
+            {{ form_errors(form.time) }}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock datetime_widget %}
+
+{% block date_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('form_widget_simple') }}
+    {% else %}
+        <div {{ block('widget_container_attributes') }}>
+            {{ form_widget(form.year, { 'attr': { 'class': 'five' }}) }}
+            &nbsp;{{ form_widget(form.month, { 'attr': { 'class': 'three' }}) }}
+            &nbsp;{{ form_widget(form.day, { 'attr': { 'class': 'three' }}) }}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock date_widget %}
+
+{% block time_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('form_widget_simple') }}
+    {% else %}
+        <div {{ block('widget_container_attributes') }}>
+            {{ form_widget(form.hour, { 'attr': { 'size': '1', 'class': 'three' } }) }}
+            {% if with_minutes %}
+                :&nbsp;{{ form_widget(form.minute, { 'attr': { 'size': '1', 'class': 'three' } }) }}
+            {% endif %}
+            {% if with_seconds %}
+                :&nbsp;{{ form_widget(form.second, { 'attr': { 'size': '1', 'class': 'three' } }) }}
+            {% endif %}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock time_widget %}
+
+{% block point_widget %}
+{% spaceless %}
+    <div id="{{ id }}_container">
+        <input type="text" id="{{ id }}_input" /><button id="{{ id }}_search_button" class="btn">Search</button><br /><a href="#" id="{{ id }}_current_position">Current location</a>
+        <div id="{{ id }}_map_canvas" class="gmap" style="width: 300px; height: 300px"></div>
+        <div id="{{ id }}_error"></div>
+    </div>
+{% endspaceless %}
+{% endblock %}
