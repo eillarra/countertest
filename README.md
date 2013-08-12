@@ -6,3 +6,9 @@ This application uses IllarraCoreBundle traits and IllarraBlogBundle traits. Is 
 > $ php app/console doctrine:database:create  
 > $ php app/console doctrine:schema:create  
 > $ php app/console assets:install  
+
+-----------
+
+This repo is linked to this StackOverflow question:
+
+> http://stackoverflow.com/questions/15311083
